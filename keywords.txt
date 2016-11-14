@@ -1,0 +1,11 @@
+MD_KeySwitch	KEYWORD1
+setDebounceTime KEYWORD2
+setDoublePressTime KEYWORD2
+setRepeatTime KEYWORD2
+setLongPressTime KEYWORD2
+enableRepeat  KEYWORD2
+enableDoublePress KEYWORD2
+enableLongPress KEYWORD2
+begin KEYWORD2
+read KEYWORD2
+
