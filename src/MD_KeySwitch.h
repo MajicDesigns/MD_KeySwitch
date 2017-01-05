@@ -84,7 +84,7 @@ protected:
 	uint32_t	_timeActive;	// the millis() time it was last activated
   uint8_t   _enableFlags; // functions enabled/disabled
   
-  // Note that Debounce time < Long Press Time < Repeat time. Noi cheking is done in the 
+  // Note that Debounce time < Long Press Time < Repeat time. No checking is done in the 
   // library to enforce this relationship.
 	uint16_t	_timeDebounce;  // debounce time in milliseconds
   uint16_t  _timeDoublePress; // double press detection time in milliseconds
