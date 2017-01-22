@@ -8,21 +8,24 @@
   - Press, double press and long press detection
   - Software auto repeat
   
-  v1.0 March 2014
-  - New library
-	
-  Updated June 2015 v1.1
-  - Added long press and changed return code from boolean to enumerated type
-
-  Updated Feb 2016 v1.2
-  - Added double press detection
+  Update Jan 2017 v1.4.1
+  - Added enableRepeatResult
+  
+  Update November 2016 v1.4
+  - Early long press returned if auto repeat is not enabled
 
   Update April 2016 v1.3
   - Added facility to enable/disable presses
 
-  Update November 2016 v1.4
-  - Early long press returned if auto repeat is not enabled
-  
+  Updated Feb 2016 v1.2
+  - Added double press detection
+
+  Updated June 2015 v1.1
+  - Added long press and changed return code from boolean to enumerated type
+
+  v1.0 March 2014
+  - New library
+
   Copyright Marco Colli 2014-2016.
   
   This library is free software; you can redistribute it and/or
@@ -44,9 +47,10 @@
 #define KEY_ON_STATE		    LOW	// default active low - transition high to low
 
 // Bit enable/disable 
-#define DPRESS_ENABLE     2
-#define LONGPRESS_ENABLE  1
-#define REPEAT_ENABLE     0
+#define REPEAT_RESULT_ENABLE  3   // return KS_REPEAT instead of KS_PRESS for repeat keys
+#define DPRESS_ENABLE         2   // enable double press
+#define LONGPRESS_ENABLE      1   // enable long press
+#define REPEAT_ENABLE         0   // enable repeat key
 
 class MD_KeySwitch
 {
@@ -54,22 +58,24 @@ public:
 	enum keyResult_t
 	{
     KS_NULL,    // no key press
-  	KS_PRESS,   // simple press or a repeated press sequence
+  	KS_PRESS,   // simple press, or a repeated press sequence if not REPEAT_RESULT_ENABLE (default)
     KS_DPRESS,  // double press
-    KS_LONGPRESS  // long press
+    KS_LONGPRESS,  // long press
+    KS_RPTPRESS    // repeated key press (if REPEAT_RESULT_ENABLE)
 	};
   
   MD_KeySwitch(uint8_t pin, uint8_t onState = KEY_ON_STATE);
 	
 	~MD_KeySwitch() { };
 		
-	inline void setDebounceTime(uint16_t t) { _timeDebounce = t; }
-  inline void setDoublePressTime(uint16_t t) { _timeDoublePress = t; enableDoublePress(true); }
-  inline void setLongPressTime(uint16_t t) { _timeLongPress = t; enableLongPress(true); }
-  inline void setRepeatTime(uint16_t t)	{ _timeRepeat = t; enableRepeat(true); }
-  inline void enableDoublePress(boolean f) { if (f) bitSet(_enableFlags, DPRESS_ENABLE); else bitClear(_enableFlags, DPRESS_ENABLE); };
-  inline void enableLongPress(boolean f) { if (f) bitSet(_enableFlags, LONGPRESS_ENABLE); else bitClear(_enableFlags, LONGPRESS_ENABLE); };
-  inline void enableRepeat(boolean f) { if (f) bitSet(_enableFlags, REPEAT_ENABLE); else bitClear(_enableFlags, REPEAT_ENABLE); };
+	inline void setDebounceTime(uint16_t t)     { _timeDebounce = t; }
+  inline void setDoublePressTime(uint16_t t)  { _timeDoublePress = t; enableDoublePress(true); }
+  inline void setLongPressTime(uint16_t t)    { _timeLongPress = t; enableLongPress(true); }
+  inline void setRepeatTime(uint16_t t)	      { _timeRepeat = t; enableRepeat(true); }
+  inline void enableDoublePress(boolean f)    { if (f) bitSet(_enableFlags, DPRESS_ENABLE); else bitClear(_enableFlags, DPRESS_ENABLE); };
+  inline void enableLongPress(boolean f)      { if (f) bitSet(_enableFlags, LONGPRESS_ENABLE); else bitClear(_enableFlags, LONGPRESS_ENABLE); };
+  inline void enableRepeat(boolean f)         { if (f) bitSet(_enableFlags, REPEAT_ENABLE); else bitClear(_enableFlags, REPEAT_ENABLE); };
+  inline void enableRepeatResult(boolean f)   { if (f) bitSet(_enableFlags, REPEAT_RESULT_ENABLE); else bitClear(_enableFlags, REPEAT_RESULT_ENABLE); };
 
 	void begin(void);
 	keyResult_t read(void);

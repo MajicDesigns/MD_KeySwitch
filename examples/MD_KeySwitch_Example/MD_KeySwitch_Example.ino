@@ -15,6 +15,7 @@ void setup()
   //S.enableDoublePress(false);
   //S.enableLongPress(false);
   //S.enableRepeat(false);
+  S.enableRepeatResult(true);
 }
 
 void loop() 
@@ -25,6 +26,7 @@ void loop()
     case MD_KeySwitch::KS_PRESS:      Serial.print("\nSINGLE PRESS"); break;
     case MD_KeySwitch::KS_DPRESS:     Serial.print("\nDOUBLE PRESS"); break;
     case MD_KeySwitch::KS_LONGPRESS:  Serial.print("\nLONG PRESS");   break;
+    case MD_KeySwitch::KS_RPTPRESS:   Serial.print("\nREPEAT PRESS"); break;
     default:                          Serial.print("\nUNKNOWN");      break;
   }    
 }

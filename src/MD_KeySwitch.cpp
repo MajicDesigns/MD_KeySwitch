@@ -129,7 +129,7 @@ MD_KeySwitch::keyResult_t MD_KeySwitch::read(void)
 
       // we are now sure we have a repeat, set the return code and remain in this 
       // state checking for further repeats if enabled
-      k = KS_PRESS;
+      k = (bitRead(_enableFlags, REPEAT_RESULT_ENABLE) && _state == S_REPEAT) ? KS_RPTPRESS : KS_PRESS;
       _state = bitRead(_enableFlags, REPEAT_ENABLE) ? S_REPEAT : S_WAIT;
       _timeActive = millis();	// next key repeat time starts now
 			break;

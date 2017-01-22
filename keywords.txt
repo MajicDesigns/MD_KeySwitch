@@ -6,6 +6,7 @@ setLongPressTime KEYWORD2
 enableRepeat  KEYWORD2
 enableDoublePress KEYWORD2
 enableLongPress KEYWORD2
+enableRepeatResult  KEYWORD2
 begin KEYWORD2
 read KEYWORD2
 
