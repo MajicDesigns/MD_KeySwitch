@@ -1,3 +1,6 @@
+This library is now replaced by the MD_UISwitch_Digital Class in the MD_UISwitch Library available [here](https://MajicDesigns.github/MD_UISwitch/)
+-
+
 # MD_KeySwitch
 
 This is a small library to encapsulate the use of momentary push switches as user input devices.  
