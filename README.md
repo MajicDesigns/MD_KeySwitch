@@ -1,4 +1,4 @@
-This library is now replaced by the MD_UISwitch_Digital Class in the MD_UISwitch Library available [here](https://githib.com/MajicDesigns/MD_UISwitch/)
+This library is now replaced by the MD_UISwitch_Digital Class in the MD_UISwitch Library available [here](https://github.com/MajicDesigns/MD_UISwitch)
 -
 
 # MD_KeySwitch
